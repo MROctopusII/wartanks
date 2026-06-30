@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Wartanks</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section id="titleScreen">
+    <main class="titleWrap">
+      <img class="gameLogo" src="images/wartanks_logo.png" alt="Wartanks" />
+
+      <section class="titlePanel" aria-label="Game setup">
+        <label class="nameLabel assetLabel" for="nameInput"><img src="images/ui/name.png" alt="Commander Name" /></label>
+        <input id="nameInput" class="nameInput" maxlength="16" value="Pilot" placeholder="Insert Name" autocomplete="off" spellcheck="false" />
+
+        <div class="rgbGrid" aria-label="Tank color RGB sliders">
+          <div class="rgbColumn redColumn">
+            <label class="assetLabel redAsset" for="rInput"><img src="images/ui/red.png" alt="Red" /></label>
+            <input id="rInput" type="range" min="0" max="255" value="227" />
+            <strong id="rValue">227</strong>
+          </div>
+          <div class="rgbColumn greenColumn">
+            <label class="assetLabel greenAsset" for="gInput"><img src="images/ui/green.png" alt="Green" /></label>
+            <input id="gInput" type="range" min="0" max="255" value="27" />
+            <strong id="gValue">27</strong>
+          </div>
+          <div class="rgbColumn blueColumn">
+            <label class="assetLabel blueAsset" for="bInput"><img src="images/ui/blue.png" alt="Blue" /></label>
+            <input id="bInput" type="range" min="0" max="255" value="19" />
+            <strong id="bValue">19</strong>
+          </div>
+        </div>
+
+        <div class="colorPreviewLine">
+          <span>Tank Paint</span>
+          <div id="colorPreview" class="colorPreview"></div>
+          <span id="colorHex">#E31B13</span>
+        </div>
+
+        <button id="startBtn" class="playButton imageButton" type="button"><img src="images/ui/play.png" alt="Play" /></button>
+
+        <div class="movementSelect" aria-label="Movement style selector">
+          <div class="movementTitle">Movement Style</div>
+          <div class="movementChoices" role="radiogroup" aria-label="Movement style">
+            <div class="movementOption">
+              <button class="movementButton selected" type="button" data-style="tank" role="radio" aria-checked="true">Tank</button>
+              <span class="infoDot" tabindex="0" aria-label="Tank controls">?</span>
+              <span class="tooltip">Mouse aims. A/D turn. W/S move forward/back.</span>
+            </div>
+            <div class="movementOption">
+              <button class="movementButton" type="button" data-style="strafe" role="radio" aria-checked="false">Strafe</button>
+              <span class="infoDot" tabindex="0" aria-label="Strafe controls">?</span>
+              <span class="tooltip">Mouse aims and turns the body. W/S forward/back. A/D strafe.</span>
+            </div>
+            <div class="movementOption">
+              <button class="movementButton" type="button" data-style="axial" role="radio" aria-checked="false">Axial</button>
+              <span class="infoDot" tabindex="0" aria-label="Axial controls">?</span>
+              <span class="tooltip">WASD moves in screen directions. Mouse aims.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <section id="gameShell" class="hidden">
+    <canvas id="game" tabindex="0"></canvas>
+  </section>
+
+  <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "wartanks-online-alpha",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Wartanks online multiplayer alpha for Render/WebSocket.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
