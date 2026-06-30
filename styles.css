@@ -883,3 +883,50 @@ button, input { font: inherit; }
   paint-order: stroke fill;
   text-shadow: 0 2px 0 rgba(0,0,0,.75);
 }
+
+
+/* Online server field for GitHub Pages + Render setup */
+.serverRow {
+  width: min(360px, 86vw);
+  margin: clamp(8px, 1.2vh, 12px) auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: #fff;
+  font-family: "Gajraj One", Impact, Haettenschweiler, "Arial Black", sans-serif;
+  font-size: 14px;
+  line-height: 1;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1px #000;
+  text-shadow: 0 2px 0 #000;
+}
+.serverInput {
+  width: min(250px, 62vw);
+  height: 28px;
+  padding: 4px 8px;
+  border: 2px solid #050505;
+  border-radius: 5px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.24) 0 10%, rgba(255,255,255,0) 20%),
+    linear-gradient(180deg, #2d2d2d, #080808 58%, #171717);
+  box-shadow:
+    inset 2px 2px 0 rgba(255,255,255,.22),
+    inset -2px -2px 0 rgba(0,0,0,.65),
+    0 2px 0 rgba(0,0,0,.4);
+  color: #fff;
+  font-family: Verdana, Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  text-align: center;
+  outline: none;
+  text-shadow: 0 1px 0 #000;
+}
+.serverInput::placeholder { color: rgba(255,255,255,.48); }
+.serverInput:focus { filter: brightness(1.12); box-shadow: 0 0 0 2px rgba(255,255,255,.18), inset 2px 2px 0 rgba(255,255,255,.22), inset -2px -2px 0 rgba(0,0,0,.65); }
+
+@media (max-width: 760px) {
+  .serverRow { font-size: 12px; }
+  .serverInput { width: min(230px, 58vw); }
+}

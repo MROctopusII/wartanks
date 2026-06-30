@@ -1,24 +1,31 @@
-Wartanks Online Render Fixed
+Wartanks Online - GitHub Pages + Render root layout
 
 IMPORTANT:
-Do not delete the public folder files. Render runs server.js, and server.js serves the browser game from public/.
+This build has NO public/ folder.
+GitHub Pages needs these files in the repository root:
+- index.html
+- styles.css
+- game.js
+- images/
 
-Render settings:
+Render needs these server files in the same repository root:
+- server.js
+- package.json
+
+Render setup:
 Build Command: npm install
 Start Command: npm start
 
-Open the Render app URL in the browser, for example:
-https://your-app-name.onrender.com
+How to play with GitHub Pages frontend + Render server:
+1. Deploy this whole repository to Render as a Web Service.
+2. Deploy the same root files to GitHub Pages.
+3. Open the GitHub Pages site.
+4. In the title screen Server box, type only your Render host, for example:
+   wartanks-online.onrender.com
+5. Press Play.
 
-Do not open index.html locally when testing the Render server, unless you pass a server URL:
-index.html?server=wss://your-app-name.onrender.com
+Alternative:
+Open the GitHub Pages URL with query param:
+?server=wartanks-online.onrender.com
 
-Health check:
-https://your-app-name.onrender.com/health
-
-This fixed build includes:
-- public/ static files
-- emergency root fallback for index.html/styles.css/game.js
-- WebSocket heartbeat
-- clearer disconnect message
-- same gameplay as online alpha
+If you open the Render app URL directly, the Server box can stay empty because the frontend and WebSocket are on the same host.

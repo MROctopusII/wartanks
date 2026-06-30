@@ -4,7 +4,6 @@ const path = require('path');
 const { WebSocketServer } = require('ws');
 
 const PORT = process.env.PORT || 3000;
-const PUBLIC_DIR = path.join(__dirname, 'public');
 const ROOT_DIR = __dirname;
 
 const MIME = {
@@ -52,19 +51,12 @@ const server = http.createServer((req, res) => {
 
   if (pathname === '/') pathname = '/index.html';
 
-  // Normal Render layout: public/index.html, public/game.js, public/styles.css, public/images/...
-  // Fallback layout: root index.html/game.js/styles.css, useful if files were accidentally moved out of public.
-  const candidates = [
-    safeStaticPath(PUBLIC_DIR, pathname),
-    safeStaticPath(ROOT_DIR, pathname),
-    pathname.startsWith('/images/') ? safeStaticPath(path.join(PUBLIC_DIR), pathname) : null
-  ].filter(Boolean);
-
-  for (const filePath of candidates) {
-    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-      sendFile(res, filePath);
-      return;
-    }
+  // GitHub Pages-compatible layout: index.html, styles.css, game.js and images/ are in the repository root.
+  // Render also serves the same root files, so there is no /public folder.
+  const filePath = safeStaticPath(ROOT_DIR, pathname);
+  if (filePath && fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+    sendFile(res, filePath);
+    return;
   }
 
   res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
