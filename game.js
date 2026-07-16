@@ -588,7 +588,24 @@
   window.addEventListener('mousedown', e => { if (e.button === 0) mouse.down = true; });
   window.addEventListener('mouseup', () => { mouse.down = false; });
   window.addEventListener('blur', () => { mouse.down = false; for (const k of Object.keys(keys)) keys[k] = false; });
+  function isTypingInForm(target) {
+    if (!target) return false;
+    const tag = (target.tagName || '').toUpperCase();
+    return tag === 'INPUT' || tag === 'TEXTAREA' || target.isContentEditable;
+  }
+
   window.addEventListener('keydown', e => {
+    // Do not steal WASD/arrow keys while the player is typing a name
+    // or editing sliders in the title screen. Those keys become controls
+    // only when the game canvas is active.
+    if (isTypingInForm(e.target)) {
+      if (e.code === 'Enter' && e.target === nameInput && !titleScreen.classList.contains('hidden')) {
+        e.preventDefault();
+        startGame();
+      }
+      return;
+    }
+
     keys[e.code] = true;
     keys[(e.key || '').toLowerCase()] = true;
     if (['KeyW', 'KeyA', 'KeyS', 'KeyD', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) e.preventDefault();
